@@ -24,8 +24,8 @@ public class Main {
 
         ProductApi product2Api = new ProductApi(
                 productId,
-                "Testowy produkt 2",
-                new BigDecimal("15.25"),
+                "Testowy produkt 1",
+                new BigDecimal("10.25"),
                 Instant.now(),
                 Instant.now()
         );

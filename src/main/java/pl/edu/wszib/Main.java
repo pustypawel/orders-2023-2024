@@ -1,6 +1,7 @@
 package pl.edu.wszib;
 
 import pl.edu.wszib.api.order.OrderApi;
+import pl.edu.wszib.api.order.OrderFacadeApi;
 import pl.edu.wszib.api.order.OrderLineApi;
 import pl.edu.wszib.api.product.ProductApi;
 
@@ -39,16 +40,21 @@ public class Main {
         System.out.println("Dane produktu 2: " + product2Api);
 
         Set<OrderLineApi> lines = new LinkedHashSet<>();
-        lines.add(new OrderLineApi(productApi, 1, productApi.price()));
+        OrderLineApi line1 = new OrderLineApi(productApi, 1, productApi.price());
+        lines.add(line1);
         OrderApi order = new OrderApi(
                 UUID.randomUUID().toString(),
                 Instant.now(),
                 Instant.now(),
-                lines,
-                productApi.price()
+                productApi.price(),
+                lines
         );
         System.out.println("Dane zamówienia: " + order);
 //        order.lines().add(new OrderLineApi(product2Api, 2, product2Api.price().multiply(BigDecimal.valueOf(2))));
 //        System.out.println("Dane zamówienia: " + order);
+
+        OrderFacadeApi orderFacade = null;
+        OrderApi order1 = orderFacade.create();
+        OrderApi order2 = orderFacade.create(line1, line1, line1);
     }
 }

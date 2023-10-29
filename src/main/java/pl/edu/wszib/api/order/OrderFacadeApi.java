@@ -1,17 +1,8 @@
 package pl.edu.wszib.api.order;
 
-import pl.edu.wszib.api.product.ProductApi;
-
 import java.util.Set;
 
 public interface OrderFacadeApi {
-    // create
-    // getById
-    // addProduct
-    // removeProduct
-    // changeQuantity
-    // increaseQuantity
-    // decreaseQuantity
     default OrderApi create() {
         return create(Set.of());
     }
@@ -24,9 +15,17 @@ public interface OrderFacadeApi {
 
     OrderApi getById(String id);
 
-    default OrderApi addProduct(ProductApi product) {
-        return addProduct(product, 1);
+    default OrderApi addProduct(String productId) {
+        return addProduct(productId, 1);
     }
 
-    OrderApi addProduct(ProductApi product, Integer quantity);
+    OrderApi addProduct(String productId, Integer quantity);
+
+    OrderApi removeProduct(String productId);
+
+    OrderApi changeQuantity(String productId, Integer quantity);
+
+    OrderApi increaseQuantity(String productId);
+
+    OrderApi decreaseQuantity(String productId);
 }

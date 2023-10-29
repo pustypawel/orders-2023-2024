@@ -1,11 +1,13 @@
 package pl.edu.wszib;
 
+import pl.edu.wszib.api.order.OrderApi;
+import pl.edu.wszib.api.order.OrderFacadeApi;
+import pl.edu.wszib.api.order.OrderLineApi;
 import pl.edu.wszib.api.product.ProductApi;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,5 +38,23 @@ public class Main {
 
         System.out.println("Dane produktu 1: " + productApi);
         System.out.println("Dane produktu 2: " + product2Api);
+
+        Set<OrderLineApi> lines = new LinkedHashSet<>();
+        OrderLineApi line1 = new OrderLineApi(productApi, 1, productApi.price());
+        lines.add(line1);
+        OrderApi order = new OrderApi(
+                UUID.randomUUID().toString(),
+                Instant.now(),
+                Instant.now(),
+                productApi.price(),
+                lines
+        );
+        System.out.println("Dane zamówienia: " + order);
+//        order.lines().add(new OrderLineApi(product2Api, 2, product2Api.price().multiply(BigDecimal.valueOf(2))));
+//        System.out.println("Dane zamówienia: " + order);
+
+        OrderFacadeApi orderFacade = null;
+       // OrderApi order1 = orderFacade.create();
+        //OrderApi order2 = orderFacade.create(line1, line1, line1);
     }
 }

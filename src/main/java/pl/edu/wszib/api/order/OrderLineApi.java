@@ -1,5 +1,11 @@
 package pl.edu.wszib.api.order;
 
-public class OrderLineApi {
-    // TODO: zaimplementować resztę struktury
+import pl.edu.wszib.api.product.ProductApi;
+
+import java.math.BigDecimal;
+
+public record OrderLineApi(
+        ProductApi product,
+        Integer quantity,
+        BigDecimal amount) {
 }

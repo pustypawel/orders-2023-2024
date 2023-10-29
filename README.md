@@ -49,3 +49,4 @@ TODO: Przygotować sturktury danych w Javie:
 - application
 - infrastructure
 - runner
+- cli

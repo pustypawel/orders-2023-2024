@@ -39,9 +39,6 @@ Produkt:
 - data utworzenia
 - data ostatniej modyfikacji
 
-TODO: Przygotować sturktury danych w Javie:
-1. W oparciu o klasy (implementacja hashcode, equals, toString, constructor)
-2. W oparciu o java records
 
 ## Docelowo podział na moduły:
 

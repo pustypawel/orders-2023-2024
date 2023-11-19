@@ -1,6 +1,6 @@
 package pl.edu.wszib.api.product;
 
 public interface ProductFacadeApi {
-    ProductApi create(ProductApi productApi);
-    ProductApi getById(String id);
+    ProductResult create(ProductApi productApi);
+    ProductResult getById(String id);
 }

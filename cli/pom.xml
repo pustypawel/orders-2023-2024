@@ -6,7 +6,7 @@
     <parent>
         <groupId>pl.edu.wszib</groupId>
         <artifactId>orders-2023-2024</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>cli</artifactId>

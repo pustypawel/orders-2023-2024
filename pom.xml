@@ -6,7 +6,7 @@
 
     <groupId>pl.edu.wszib</groupId>
     <artifactId>orders-2023-2024</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <module>api</module>
@@ -17,6 +17,8 @@
     </modules>
 
     <properties>
+        <revision>1.2-SNAPSHOT</revision>
+
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,27 +36,27 @@
             <dependency>
                 <groupId>pl.edu.wszib</groupId>
                 <artifactId>api</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>pl.edu.wszib</groupId>
                 <artifactId>application</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>pl.edu.wszib</groupId>
                 <artifactId>infrastructure</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>pl.edu.wszib</groupId>
                 <artifactId>cli</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>pl.edu.wszib</groupId>
                 <artifactId>runner</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

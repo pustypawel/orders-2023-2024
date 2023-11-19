@@ -46,7 +46,7 @@ TODO: Przygotować sturktury danych w Javie:
 ## Docelowo podział na moduły:
 
 - api
-- application
-- infrastructure
-- runner
+- application (api)
+- infrastructure (api, application)
+- runner (api, application, infrastructure)
 - cli

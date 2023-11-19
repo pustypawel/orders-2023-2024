@@ -9,28 +9,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>runner</artifactId>
+    <artifactId>cli</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>pl.edu.wszib</groupId>
-            <artifactId>api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>pl.edu.wszib</groupId>
-            <artifactId>application</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>pl.edu.wszib</groupId>
-            <artifactId>infrastructure</artifactId>
-        </dependency>
-    </dependencies>
-
 
 </project>

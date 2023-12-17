@@ -1,5 +1,7 @@
 package pl.edu.wszib.api.order;
 
+import java.util.NoSuchElementException;
+
 public sealed interface OrderResult
         permits OrderResult.SuccessOrderResult, OrderResult.FailureOrderResult {
 
@@ -13,17 +15,39 @@ public sealed interface OrderResult
         return new FailureOrderResult(code, message);
     }
 
+    boolean isSuccess();
+
+    OrderApi success();
+
     enum Code {
-        NOT_FOUND
+        // internal
+        NOT_FOUND,
+
+        NO_PRODUCT, // caused in external modules
+        PRODUCT_ERROR
     }
 
     record SuccessOrderResult(OrderApi order) implements OrderResult {
-        public SuccessOrderResult(OrderApi order) {
-            this.order = order;
+        @Override
+        public boolean isSuccess() {
+            return true;
+        }
+
+        @Override
+        public OrderApi success() {
+            return order;
         }
     }
 
     record FailureOrderResult(Code code, String message) implements OrderResult {
+        @Override
+        public boolean isSuccess() {
+            return false;
+        }
 
+        @Override
+        public OrderApi success() {
+            throw new NoSuchElementException();
+        }
     }
 }

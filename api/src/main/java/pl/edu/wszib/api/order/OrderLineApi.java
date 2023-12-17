@@ -8,4 +8,9 @@ public record OrderLineApi(
         ProductApi product,
         Integer quantity,
         BigDecimal amount) {
+    public OrderLineApi addQuantity(final Integer quantity) {
+        final Integer changedQuantity = this.quantity + quantity;
+        final BigDecimal changedAmount = product.price().multiply(BigDecimal.valueOf(changedQuantity));
+        return new OrderLineApi(product, changedQuantity, changedAmount);
+    }
 }

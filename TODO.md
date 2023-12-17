@@ -1,0 +1,3 @@
+- [ ] better error message handling
+- [ ] make facades package private (expose only FacadeApi)
+- [ ] create configuration classes for facades

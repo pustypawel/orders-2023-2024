@@ -7,5 +7,5 @@ import java.util.Optional;
 public interface OrderRepository {
     OrderApi save(OrderApi order);
 
-    Optional<OrderApi> findById(String id);
+    Optional<OrderApi> findById(String orderId);
 }

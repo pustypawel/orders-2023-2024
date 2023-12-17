@@ -13,19 +13,19 @@ public interface OrderFacadeApi {
 
     OrderApi create(Set<OrderLineApi> lines);
 
-    OrderResult getById(String id);
+    OrderResult getById(String orderId);
 
-    default OrderApi addProduct(String productId) {
-        return addProduct(productId, 1);
+    default OrderResult addProduct(String orderId, String productId) {
+        return addProduct(orderId, productId, 1);
     }
 
-    OrderApi addProduct(String productId, Integer quantity);
+    OrderResult addProduct(String orderId, String productId, Integer quantity);
 
-    OrderApi removeProduct(String productId);
+    OrderResult removeProduct(String orderId, String productId);
 
-    OrderApi changeQuantity(String productId, Integer quantity);
+    OrderResult changeQuantity(String orderId, String productId, Integer quantity);
 
-    OrderApi increaseQuantity(String productId);
+    OrderResult increaseQuantity(String orderId, String productId);
 
-    OrderApi decreaseQuantity(String productId);
+    OrderResult decreaseQuantity(String orderId, String productId);
 }

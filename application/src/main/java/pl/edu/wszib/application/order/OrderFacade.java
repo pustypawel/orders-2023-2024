@@ -1,9 +1,6 @@
 package pl.edu.wszib.application.order;
 
-import pl.edu.wszib.api.order.OrderApi;
-import pl.edu.wszib.api.order.OrderFacadeApi;
-import pl.edu.wszib.api.order.OrderLineApi;
-import pl.edu.wszib.api.order.OrderResult;
+import pl.edu.wszib.api.order.*;
 import pl.edu.wszib.api.product.ProductResult;
 import pl.edu.wszib.application.product.ProductFacade;
 

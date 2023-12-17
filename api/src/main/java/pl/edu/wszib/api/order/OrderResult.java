@@ -1,7 +1,7 @@
 package pl.edu.wszib.api.order;
 
 public sealed interface OrderResult
-        permits SuccessOrderResult, FailureOrderResult {
+        permits OrderResult.SuccessOrderResult, OrderResult.FailureOrderResult {
 
     static OrderResult success(final OrderApi order) {
         return new SuccessOrderResult(order);
@@ -16,11 +16,14 @@ public sealed interface OrderResult
     enum Code {
         NOT_FOUND
     }
-}
-record SuccessOrderResult(OrderApi order) implements OrderResult {
 
-}
+    record SuccessOrderResult(OrderApi order) implements OrderResult {
+        public SuccessOrderResult(OrderApi order) {
+            this.order = order;
+        }
+    }
 
-record FailureOrderResult(Code code, String message) implements OrderResult {
+    record FailureOrderResult(Code code, String message) implements OrderResult {
 
+    }
 }

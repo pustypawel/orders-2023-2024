@@ -13,7 +13,7 @@ public interface OrderFacadeApi {
 
     OrderApi create(Set<OrderLineApi> lines);
 
-    OrderApi getById(String id);
+    OrderResult getById(String id);
 
     default OrderApi addProduct(String productId) {
         return addProduct(productId, 1);

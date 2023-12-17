@@ -16,7 +16,7 @@ public class ProductFacade implements ProductFacadeApi {
         if (productRepository.existsById(productApi.id())) {
             return ProductResult.failure(
                     ProductResult.Code.ALREADY_EXISTS,
-                    "Product with id = " + productApi.id() + " already exists."
+                    "Product with id = %s already exists.".formatted(productApi.id())
             );
         }
         return ProductResult.success(productRepository.save(productApi));
@@ -25,8 +25,7 @@ public class ProductFacade implements ProductFacadeApi {
     @Override
     public ProductResult getById(final String id) {
         return productRepository.findById(id)
-//                .map(productApi -> ProductResult.success(productApi))
                 .map(ProductResult::success)
-                .orElseGet(() -> ProductResult.failure(ProductResult.Code.NOT_FUND, "Product with id = " + id + " does not exists."));
+                .orElseGet(() -> ProductResult.failure(ProductResult.Code.NOT_FUND, "Product with id = %s does not exists.".formatted(id)));
     }
 }

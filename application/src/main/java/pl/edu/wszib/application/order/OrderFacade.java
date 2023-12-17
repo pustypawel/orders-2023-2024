@@ -3,31 +3,48 @@ package pl.edu.wszib.application.order;
 import pl.edu.wszib.api.order.OrderApi;
 import pl.edu.wszib.api.order.OrderFacadeApi;
 import pl.edu.wszib.api.order.OrderLineApi;
+import pl.edu.wszib.api.order.OrderResult;
+import pl.edu.wszib.api.product.ProductResult;
 import pl.edu.wszib.application.product.ProductFacade;
 
+import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 public class OrderFacade implements OrderFacadeApi {
-    // TODO: zaimplementować repozytorium in memory, klasę umieścić w odpowiednim miejscu
+    private final OrderIdProvider orderIdProvider;
     private final OrderRepository orderRepository;
     private final ProductFacade productFacade;
+    private final Clock clock;
 
-    public OrderFacade(final OrderRepository orderRepository,
-                       final ProductFacade productFacade) {
+
+    public OrderFacade(final OrderIdProvider orderIdProvider,
+                       final OrderRepository orderRepository,
+                       final ProductFacade productFacade,
+                       final Clock clock) {
+        this.orderIdProvider = orderIdProvider;
         this.orderRepository = orderRepository;
         this.productFacade = productFacade;
+        this.clock = clock;
     }
 
-    // TODO: impl
     @Override
     public OrderApi create(final Set<OrderLineApi> lines) {
-        return null;
+        final BigDecimal amount = lines.stream()
+                .map(OrderLineApi::amount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        final OrderApi order = new OrderApi(orderIdProvider.create(), Instant.now(clock), Instant.now(clock), amount, lines);
+        return orderRepository.save(order);
     }
 
-    // TODO: impl
     @Override
-    public OrderApi getById(final String id) {
-        return null;
+    public OrderResult getById(final String id) {
+        return orderRepository.findById(id)
+                .map(OrderResult::success)
+                .orElseGet(() -> OrderResult.failure(OrderResult.Code.NOT_FOUND, "Order with id %s does not exist.".formatted(id)));
     }
 
     @Override
